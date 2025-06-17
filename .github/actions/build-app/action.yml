@@ -2,9 +2,15 @@ name: Build The Application
 
 description: Builds the entire application
 
+inputs:
+  working-directory:
+    description: Folder to build (e.g., ./client or ./server)
+    required: true
+
 runs:
   using: "composite"
   steps:
-    - name: Run build scripts
+    - name: Run Build Script
       shell: bash
+      working-directory: ${{ inputs.working-directory }}
       run: npm run build

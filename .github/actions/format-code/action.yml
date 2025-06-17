@@ -2,15 +2,25 @@ name: Format code
 
 description: Format code with formatters and linters.
 
+inputs:
+  working-directory:
+    description: Folder to format (e.g., ./client or ./server)
+    required: true
+
 runs:
   using: "composite"
   steps:
     - name: Run ESLint
       shell: bash
-      working-directory: ${{ env.working-directory }}
+      working-directory: ${{ inputs.working-directory }}
       run: npm run lint:fix
 
-    - name: Run Prettier
+    - name: Run Prettier (optional)
       shell: bash
-      working-directory: ${{ env.working-directory }}
-      run: npm run format:style
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        if [ -f "package.json" ] && grep -q "format:style" package.json; then
+          npm run format:style
+        else
+          echo "Skipping prettier: format:style not found"
+        fi

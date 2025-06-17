@@ -1,4 +1,5 @@
 // tslint:disable-next-line:no-var-requires
+/* eslint-disable @typescript-eslint/no-require-imports */
 require('tsconfig-paths/register')
 
 import * as http from 'http'

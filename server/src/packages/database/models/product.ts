@@ -44,7 +44,7 @@ export class Product extends BaseEntity {
 
     // product reviews
     @Column("json", { nullable : true })
-    reviews: { rating: number, comment: string, reviewerName: string, reviewerEmail: string }[];
+    reviews: { rating: number, comment: string, reviewerName: string, reviewerEmail: string }[]
 
     // shipping info
     @Column("varchar")

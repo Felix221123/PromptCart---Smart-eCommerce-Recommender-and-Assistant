@@ -12,42 +12,42 @@ export const register = async (_req: Request, _res: Response, _next: NextFunctio
   try {
 
     // get the repository
-    const usersRepository = AppDataSource.getRepository(User);
+    const usersRepository = AppDataSource.getRepository(User)
 
     // check if the user already exists
     const existingUser = await usersRepository.findOne({ where: { email } })  
 
     // if user already exist then log an console.error;
     if (existingUser){
-      return _res.status(400).json({ message: "User already exists with the same email" });
+      return _res.status(400).json({ message: "User already exists with the same email" })
     }
 
     // hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10)
 
     // save the new users ito the database
-    const user = new User();
-    user.firstName = firstName;
-    user.lastName = lastName;
-    user.email = email;
-    user.password = hashedPassword;
-    user.role = role;
-    user.status = "active";
-    user.sessionToken = null;
+    const user = new User()
+    user.firstName = firstName
+    user.lastName = lastName
+    user.email = email
+    user.password = hashedPassword
+    user.role = role
+    user.status = "active"
+    user.sessionToken = null
 
     // save the user
     if (!user) {
-      return _res.status(400).json({ message: "Invalid user data" });
+      return _res.status(400).json({ message: "Invalid user data" })
     } else if (user) {
-      await usersRepository.save(user);
-      return _res.status(201).json({ message: "User registered successfully", user });
+      await usersRepository.save(user)
+      return _res.status(201).json({ message: "User registered successfully", user })
     } else {
-      return _res.status(400).json({ message: "Failed to register user" });
+      return _res.status(400).json({ message: "Failed to register user" })
     }
     
     
   } catch (error) {
-    return _res.status(500).json({ message: "Internal server error", error });
+    return _res.status(500).json({ message: "Internal server error", error })
   }
 }
 

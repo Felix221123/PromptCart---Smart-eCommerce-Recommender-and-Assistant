@@ -19,10 +19,6 @@ jobs:
       group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
       cancel-in-progress: true
 
-    defaults:
-      run:
-        working-directory: ${{ env.working-directory }}
-
     permissions:
       contents: write
       pull-requests: write
@@ -33,16 +29,31 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Use Node.js ${{ env.node-version }}
+      - name: Setup Node.js
         uses: ./.github/actions/setup-node
         with:
           node-version: ${{ env.node-version }}
 
-      - name: Install Node modules
+      - name: Install Client Dependencies
         uses: ./.github/actions/install-node-modules
+        with:
+          working-directory: ./client
 
-      - name: Format code
+      - name: Format Client
         uses: ./.github/actions/format-code
+        with:
+          working-directory: ./client
+
+      - name: Install Server Dependencies
+        uses: ./.github/actions/install-node-modules
+        with:
+          working-directory: ./server
+
+      - name: Format Server
+        uses: ./.github/actions/format-code
+        with:
+          working-directory: ./server
+
 
 
   test:
@@ -53,6 +64,10 @@ jobs:
     concurrency:
       group: "${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }} - ${{ matrix.node-version }}"
       cancel-in-progress: true
+
+    defaults:
+      run:
+        working-directory: ./client
 
     strategy:
       matrix:
@@ -78,6 +93,10 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./client
+
     strategy:
       matrix:
         node-version: [21.x]
@@ -91,8 +110,22 @@ jobs:
         with:
           node-version: ${{ env.node-version }}
 
-      - name: Install Node.js dependencies
-        uses: ./.github/actions/install-node-modules # Step 3: Perform a clean install of Node.js dependencies.
-
-      - name: Build App
+      - name: Install Client Dependencies
+        uses: ./.github/actions/install-node-modules
+        with:
+            working-directory: ./client
+  
+      - name: Build Client
         uses: ./.github/actions/build-app
+        with:
+          working-directory: ./client
+  
+      - name: Install Server Dependencies
+        uses: ./.github/actions/install-node-modules
+        with:
+          working-directory: ./server
+  
+      - name: Build Server
+        uses: ./.github/actions/build-app
+        with:
+          working-directory: ./server

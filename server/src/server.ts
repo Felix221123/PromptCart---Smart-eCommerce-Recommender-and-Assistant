@@ -50,19 +50,19 @@ app.use('/', limiter)
 
 
 // Data sanitization against XSS
-app.use(xss());
+app.use(xss())
 
 // Prevent http param pollution
-app.use(hpp());
+app.use(hpp())
 
 // Implement CORS
-app.use(cors());
+app.use(cors())
 
-app.options('*', cors());
+app.options('*', cors())
 
-app.use(compression());
+app.use(compression())
 
-app.disable('x-powered-by');
+app.disable('x-powered-by')
 
 app.use(
   morgan(config.LOGGING.TYPE, {
