@@ -84,9 +84,13 @@ jobs:
 
       - name: Install Node modules
         uses: ./.github/actions/install-node-modules
+        with:
+          working-directory: ./client
 
       - name: Run tests using the vitest framework
         uses: ./.github/actions/run-tests
+        with:
+          working-directory: ./client
 
   build:
     name: Builds the app
