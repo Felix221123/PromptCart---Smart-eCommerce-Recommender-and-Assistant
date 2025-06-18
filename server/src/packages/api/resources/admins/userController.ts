@@ -4,7 +4,16 @@ import { AppDataSource } from '../../../../data-source'
 import { User } from '~/packages/database/models/user'
 
 
-
+// all users
+export const allUsers = async (_req: Request, _res: Response, _next: NextFunction) => {
+    try {
+        const usersRepository = AppDataSource.getRepository(User)
+        const users = await usersRepository.find()
+        return _res.status(200).json({ message: "All users", users })
+    } catch (error) {
+        return _res.status(500).json({ message: "Internal server error", error })
+    }
+}
 
 
 

@@ -48,7 +48,7 @@ export class User extends BaseEntity {
   public updated_at?: Timestamp
 
   // sessionToken management
-  @Column({ type: "uuid", default: () => "uuid_generate_v4()", nullable: true })
+  @Column({ type: "text", nullable: true })
   sessionToken: string
 
 

@@ -13,7 +13,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "db:cli": "typeorm-ts-node-commonjs -d ./src/data-source.ts",
-    "db:migration:generate": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:generate ./src/packages/database/migrations/InitialMigration",
+    "db:migration:generate": "npm run db:cli -- migration:generate ./src/packages/database/migrations/InitialMigration",
+    "db:migrate:changes": "npm run db:cli -- migration:generate ./src/packages/database/migrations/DBChanges",
     "db:migrate:run": "npm run db:cli -- migration:run",
     "db:revert": "npm run db:cli -- migration:revert",
     "db:schema:log": "npm run db:cli -- schema:log"

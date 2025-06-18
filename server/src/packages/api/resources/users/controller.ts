@@ -3,7 +3,8 @@ import * as httpStatus from 'http-status'
 import { AppDataSource } from '../../../../data-source'
 import bcrypt from 'bcrypt'
 import { User } from '~/packages/database/models/user'
-
+import jwt, { SignOptions} from 'jsonwebtoken'
+import config from '../../../../config/index'
 
 // registering users
 export const register = async (_req: Request, _res: Response, _next: NextFunction) => {
@@ -51,8 +52,63 @@ export const register = async (_req: Request, _res: Response, _next: NextFunctio
   }
 }
 
+// logging in users
+export const login = async (_req: Request, _res: Response, _next: NextFunction) => {
+  const { email, password } = _req.body
 
-// api starting point
-export const hello = async (req: Request, res: Response, next: NextFunction) => {
-  res.status(httpStatus.OK).json({ hello: 'world' })
+  try {
+
+    // get the repository
+    const usersRepository = AppDataSource.getRepository(User)
+
+    // check if the user already exists
+    const existingUser = await usersRepository.findOne({ where: { email } })
+
+    // if user already exist then log an console.error;
+    if (!existingUser){
+      return _res.status(400).json({ message: "User does not exist" })
+    }
+
+    // check if the password is correct
+    const isPasswordCorrect = await bcrypt.compare(password, existingUser.password)
+
+    // if password is incorrect then log an console.error;
+    if (!isPasswordCorrect){
+      return _res.status(400).json({ message: "Incorrect password" })
+    }
+
+    // Create session token
+    const payload = {
+      id: existingUser.id,
+      email: existingUser.email,
+      role: existingUser.role,
+    }
+
+
+    const token = jwt.sign(
+      payload, 
+      config.AUTH.TOKEN_SECRET, 
+      {
+        expiresIn: config.AUTH.TOKEN_EXPIRATION_TIME as SignOptions['expiresIn'],
+      }
+    );
+
+    // Optional: Save session token to DB
+    existingUser.sessionToken = token
+    await usersRepository.save(existingUser)
+
+    return _res.status(200).json({
+      message: "User logged in successfully",
+      token,
+      user: {
+        id: existingUser.id,
+        email: existingUser.email,
+        role: existingUser.role,
+      },
+    })
+
+  } catch (error) {
+    return _res.status(500).json({ message: "Internal server error", error })
+  }
 }
+
