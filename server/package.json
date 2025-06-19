@@ -17,10 +17,12 @@
     "db:migrate:changes": "npm run db:cli -- migration:generate ./src/packages/database/migrations/DBChanges",
     "db:migrate:run": "npm run db:cli -- migration:run",
     "db:revert": "npm run db:cli -- migration:revert",
-    "db:schema:log": "npm run db:cli -- schema:log"
+    "db:schema:log": "npm run db:cli -- schema:log",
+    "import:products": "ts-node src/packages/database/importProducts.ts"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "axios": "^1.10.0",
     "bcrypt": "^5.1.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
