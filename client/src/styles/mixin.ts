@@ -54,6 +54,10 @@ export const fontSize32px = () => css`
   font-size: clamp(2rem, 2.05vw, 2.05rem);
 `;
 
+export const fontSize36px = () => css`
+  font-size: clamp(2.25rem, 2.25vw, 2.26rem);
+`;
+
 export const fontSize40px = () => css`
   font-size: clamp(2.5rem, 2.55vw, 2.6rem);
 `;
@@ -121,14 +125,16 @@ export const transitionHovers = css`
   }
 `
 
-export const ButtonStyle = (bgClr: string, pd: string, br:string, textClr: string, ftFamily: string, ftWeight:string ) => css`
-  background: ${ bgClr };
-  color: ${ textClr };
+export const ButtonStyle = (pd: string, br:string, ftWeight:string ) => css`
   padding: ${ pd };
   border-radius: ${ br };
-  font-family: ${ ftFamily };
   font-weight: ${ ftWeight };
-  ${transitionHovers};
+  cursor: pointer;
+  border: none;
+
+  &:hover , &:active , &:focus {
+    ${transitionHovers};
+  }
 `;
 
 
