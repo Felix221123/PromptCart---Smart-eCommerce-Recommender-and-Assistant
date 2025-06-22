@@ -2,6 +2,7 @@
 export interface AuthButtonProps {
   text: string
   onClick: () => void
+  className?: string
 }
 
 // input component props
@@ -14,12 +15,14 @@ export interface InputProps {
 // text component props
 export interface TextProps {
   text: string
+  className?: string
 }
 
 // button component props
 export interface ButtonProps {
   text?: string
   onClick?: () => void
+  className?: string
 }
 
 
