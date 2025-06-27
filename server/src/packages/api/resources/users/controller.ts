@@ -8,7 +8,7 @@ import config from '../../../../config/index'
 
 // registering users
 export const register = async (_req: Request, _res: Response, _next: NextFunction) => {
-  const { firstName, lastName, email, password , role } = _req.body
+  const { firstName, lastName, email, password } = _req.body
 
   try {
 
@@ -32,7 +32,7 @@ export const register = async (_req: Request, _res: Response, _next: NextFunctio
     user.lastName = lastName
     user.email = email
     user.password = hashedPassword
-    user.role = role
+    user.role = "user"
     user.status = "active"
     user.sessionToken = null
 
@@ -45,7 +45,6 @@ export const register = async (_req: Request, _res: Response, _next: NextFunctio
     } else {
       return _res.status(400).json({ message: "Failed to register user" })
     }
-    
     
   } catch (error) {
     return _res.status(500).json({ message: "Internal server error", error })
@@ -91,7 +90,7 @@ export const login = async (_req: Request, _res: Response, _next: NextFunction) 
       {
         expiresIn: config.AUTH.TOKEN_EXPIRATION_TIME as SignOptions['expiresIn'],
       }
-    );
+    )
 
     // Optional: Save session token to DB
     existingUser.sessionToken = token

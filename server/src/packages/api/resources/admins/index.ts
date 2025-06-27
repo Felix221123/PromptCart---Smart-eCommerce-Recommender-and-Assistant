@@ -13,7 +13,7 @@ router.route('/users').get(userHello)
 router.route('/products').get(productHello)
 
 // get all users endpoint
-router.get('/allUsers', authenticateToken, allUsers);
+router.get('/allUsers', authenticateToken, allUsers)
 
 
 export default router

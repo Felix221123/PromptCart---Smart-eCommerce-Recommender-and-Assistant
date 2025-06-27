@@ -34,6 +34,12 @@ export const Register: React.FC = () => {
         {/* form group here */}
         <FormContainer action='' method='post'>
           {/* inputs */}
+          <Input type='text'
+              placeholder='First Name'
+              label='First Name' />
+          <Input type='text'
+              placeholder='Last Name'
+              label='First Name' />
           <Input type="text"
             placeholder="name@example.com"
             label="email" />
@@ -48,7 +54,7 @@ export const Register: React.FC = () => {
           <AuthButton text='Register' onClick={() => { console.log("register") }} />
 
           {/* link to login */}
-          <div className='flex flex-row items-center gap-2'>
+          <div className='flex flex-row items-center gap-2 mb-8'>
             <Paragraph text="Already a member?" />
             <a onClick={() => handleNavigation('login')} className='font-normal text-blue-500 cursor-pointer'>Login</a>
           </div>
