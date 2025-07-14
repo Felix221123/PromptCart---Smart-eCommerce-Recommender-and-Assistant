@@ -111,3 +111,33 @@ export const login = async (_req: Request, _res: Response, _next: NextFunction) 
   }
 }
 
+
+// logging out users
+// logging out users
+export const logout = async (_req: Request, _res: Response, _next: NextFunction) => {
+  try {
+    const authHeader = _req.headers.authorization
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return _res.status(401).json({ message: "No token provided" })
+    }
+
+    const token = authHeader.split(" ")[1]
+    const decoded: any = jwt.verify(token, config.AUTH.TOKEN_SECRET)
+
+    const usersRepository = AppDataSource.getRepository(User)
+    const user = await usersRepository.findOne({ where: { id: decoded.id } })
+
+    if (!user || user.sessionToken !== token) {
+      return _res.status(403).json({ message: "Invalid session" })
+    }
+
+    // Clear the session token
+    user.sessionToken = null
+    await usersRepository.save(user)
+
+    return _res.status(200).json({ message: "Logged out successfully" })
+  } catch (error) {
+    return _res.status(500).json({ message: "Internal server error", error })
+  }
+}

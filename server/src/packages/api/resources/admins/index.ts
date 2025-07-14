@@ -1,7 +1,7 @@
 import Router from 'express-promise-router'
 import { productHello } from './productController'
 import { userHello, allUsers } from './userController'
-import { authenticateToken } from '../../middlewares/authenticateToken'
+import { authenticate } from '../../middlewares/authenticateToken'
 
 
 const router = Router()
@@ -13,7 +13,7 @@ router.route('/users').get(userHello)
 router.route('/products').get(productHello)
 
 // get all users endpoint
-router.get('/allUsers', authenticateToken, allUsers)
+router.get('/allUsers', authenticate, allUsers)
 
 
 export default router

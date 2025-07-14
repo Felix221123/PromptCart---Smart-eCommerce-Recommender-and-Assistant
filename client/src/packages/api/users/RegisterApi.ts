@@ -2,7 +2,7 @@ import { RegisterProps } from "../../../interface/UserProps";
 import { FetchData } from "../../fetchManager/FetchManager";
 
 // RegisterApi.ts
-const RegisterApi = async (props: RegisterProps) => {
+export const RegisterApi = async (props: RegisterProps) => {
   const Port = "http://localhost:5500";     //defining the backend port
   const registerPort = `${Port}/user/register`;            // defining the route for sign up
 
@@ -34,4 +34,3 @@ const RegisterApi = async (props: RegisterProps) => {
 }
 
 
-export default RegisterApi;

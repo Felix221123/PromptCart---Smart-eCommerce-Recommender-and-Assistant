@@ -2,7 +2,10 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { LogIn } from '../pages/users/LogIn';
 import { Register } from '../pages/users/Register';
-import { Home } from '../pages/users/Home';
+import { Home } from '../pages/users/shared/Home';
+import { PrivateRoute } from './PrivateRoute';
+
+
 
 export const AppRoute: React.FC = () => {
   return (
@@ -17,8 +20,14 @@ export const AppRoute: React.FC = () => {
         <Route path="/register" element={<Register />} />
 
         {/* route for home page */}
-        <Route path="/home" element={<Home />} />
-
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
 
       </Routes>
     </Router>
