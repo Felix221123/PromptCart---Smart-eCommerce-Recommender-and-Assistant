@@ -24,6 +24,14 @@ const app = express()
 //   app.enable('trust proxy')
 // }
 
+// Implement CORS
+// app.use(cors())
+
+// app.options('*', cors())
+app.use(cors({
+  origin: 'http://localhost:5173', // your React frontend origin
+  credentials: true,
+}))
 
 // Set Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }))
@@ -54,11 +62,6 @@ app.use(xss())
 
 // Prevent http param pollution
 app.use(hpp())
-
-// Implement CORS
-app.use(cors())
-
-app.options('*', cors())
 
 app.use(compression())
 

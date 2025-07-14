@@ -4,7 +4,7 @@ import './App.css'
 import theme from "./styles/theme"
 import { ThemeProvider } from 'styled-components'
 import { AppRoute } from './routes/AppRoute'
-
+import { AuthProvider } from './context/users/AuthContext'
 
 
 
@@ -13,9 +13,11 @@ import { AppRoute } from './routes/AppRoute'
 function App() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <AppRoute />
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <AppRoute />
+        </ThemeProvider>
+      </AuthProvider>
     </>
   )
 }

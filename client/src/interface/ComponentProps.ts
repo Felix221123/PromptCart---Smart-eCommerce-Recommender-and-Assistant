@@ -1,12 +1,15 @@
+import React from "react";
+
 // authentication button props
 export interface AuthButtonProps {
   text: string
-  onClick: () => void
+  onClick?: () => void
   className?: string
+  type?: "button" | "reset" | "submit";
 }
 
 // input component props
-export interface InputProps {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type: string
   placeholder?: string
   label: string

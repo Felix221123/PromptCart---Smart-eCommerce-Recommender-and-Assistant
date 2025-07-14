@@ -20,7 +20,7 @@ export const FormGroup = styled.div`
 `;
 
 
-export const InputStyle = styled.input`
+export const InputStyle = styled.input.attrs({})<React.InputHTMLAttributes<HTMLInputElement>>`
   border: 1.5px solid ${props => props.theme.colors.lightGreyish};
   outline: none;
   background-color: transparent;
@@ -38,3 +38,4 @@ export const InputStyle = styled.input`
     color: ${props => props.theme.colors.darkShade};
   }
 `;
+

@@ -4,12 +4,19 @@ import { InputProps } from '../../interface/ComponentProps'
 import { CapitaliseFirstLetter } from '../../utils/CapitaliseFirstLetter'
 import { ReplaceSpaceInWords } from "../../utils/ReplaceSpace"
 
-export const Input: React.FC<InputProps> = ({ type, placeholder, label }) => {
+
+export const Input: React.FC<InputProps> = ({ type, placeholder, label,...rest }) => {
   return (
     <>
       <FormGroup>
         <label htmlFor={ReplaceSpaceInWords(label)} className='font-semibold'>{CapitaliseFirstLetter(label)}</label>
-        <InputStyle type={type} placeholder={placeholder} id={ReplaceSpaceInWords(label)}></InputStyle>
+        <InputStyle
+        type={type}
+        placeholder={placeholder}
+        id={ReplaceSpaceInWords(label)}
+        autoComplete="on"
+        {...rest}
+        ></InputStyle>
       </FormGroup>
     </>
   )

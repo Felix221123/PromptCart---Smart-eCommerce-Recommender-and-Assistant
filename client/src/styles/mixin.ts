@@ -2,7 +2,7 @@
 import { css } from 'styled-components'
 
 
-export const flexCenter = (direction: string,justify?: string) => css`
+export const flexCenter = (direction: string, justify?: string) => css`
   display: flex;
   justify-content: ${justify};
   align-items: center;
@@ -85,6 +85,7 @@ export const OverLayEffect = css`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
   cursor: pointer;
+   transition: all 0.5s;
 `
 
 export const hiddenElementLessThan767px = css`
@@ -125,10 +126,10 @@ export const transitionHovers = css`
   }
 `
 
-export const ButtonStyle = (pd: string, br:string, ftWeight:string ) => css`
-  padding: ${ pd };
-  border-radius: ${ br };
-  font-weight: ${ ftWeight };
+export const ButtonStyle = (pd: string, br: string, ftWeight: string) => css`
+  padding: ${pd};
+  border-radius: ${br};
+  font-weight: ${ftWeight};
   cursor: pointer;
   border: none;
 
