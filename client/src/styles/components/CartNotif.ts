@@ -6,6 +6,10 @@ export const CartNotificationStyle = styled.div`
   position: relative;
   display: inline-block;
 
+  @media (max-width: 767px) {
+    display: none;
+  }
+
 
   > img {
     width: 2.5rem;

@@ -4,6 +4,7 @@ import {
   flexCenter,
   fontSize15px,
   fontSize24px,
+  fontSize36px,
   fontSize60px,
   SizeofOriginalContentsForDevicesMoreThan1440px,
 } from "../mixin";
@@ -45,16 +46,62 @@ export const SiteHeader = styled.header`
         object-fit: cover;
         border-radius: 50%;
       }
+
+      > img.liked-items {
+        @media (max-width: 767px) {
+          display: none;
+        }
+      }
     }
 
 `
 
 export const TextSection = styled.div`
     ${flexCenter("column", "center")};
-    padding: 13rem 0rem;
+    padding: 6rem 0rem;
+    text-align: center;
 
     > .hero-header {
       ${fontSize60px};
+
+      @media (max-width: 767px) {
+        ${fontSize36px};
+        padding: 0rem 1rem;
+      }
     }
 
+`
+
+export const SearchBox = styled.div`
+    ${flexCenter("row", "center")};
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: ${props => props.theme.colors.whiteClr};
+    border-radius: 5rem;
+    position: relative;
+    width: 35%;
+    height: 3rem;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    > img {
+      width: 2rem;
+      height: 2rem;
+      object-fit: cover;
+      position: absolute;
+      left: 5%;
+      top: 25%;
+    }
+
+    > input {
+      width: 100%;
+      padding: 0.75rem 0.75rem 0.75rem 3rem;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      ${fontSize15px};
+      color: ${props => props.theme.colors.greyishBlack};
+    }
 `
