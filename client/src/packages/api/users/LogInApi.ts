@@ -4,7 +4,7 @@ import { FetchData } from "../../fetchManager/FetchManager";
 // LogInApi.ts
 export const LogInApi = async (props: LogInProps) => {
   const Port = "http://localhost:5500";     //defining the backend port
-  const loginPort = `${Port}/user/login`;            // defining the route for log in
+  const url = `${Port}/user/login`;            // defining the route for log in
 
 
   // passing in the fields required in the server side
@@ -21,7 +21,7 @@ export const LogInApi = async (props: LogInProps) => {
   };
 
   // fetching the data from the server
-  const response = await FetchData(loginPort, options);
+  const response = await FetchData(url, options);
 
   if (!response.ok) {
     // Throw the entire response object

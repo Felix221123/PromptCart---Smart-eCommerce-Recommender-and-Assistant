@@ -1,23 +1,20 @@
-import { RegisterProps } from "../../../interface/UserProps";
 import { FetchData } from "../../fetchManager/FetchManager";
+import { AllProductResponse } from "../../../interface/ProductProps";
 
-// RegisterApi.ts
-export const RegisterApi = async (props: RegisterProps) => {
+
+// get products by categories and price
+export const GetProductsByCategoryAndPrice = async (categories: string[], minPrice: number, maxPrice: number): Promise<AllProductResponse | null> => {
   const Port = "http://localhost:5500";     //defining the backend port
-  const url = `${Port}/user/register`;            // defining the route for sign up
-
-
-  // passing in the fields required in the server side
-  const {firstName , lastName, email, password }  = props
+  const categoryQuery = categories.join(',');
+  const url = `${Port}/products?category=${categoryQuery}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
 
   // making an options header for correct data posting
   const options = {
-    method: "POST",
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
     credentials: 'include',
-    body: JSON.stringify({firstName, lastName, email, password}),
   };
 
   // fetching the data from the server
@@ -31,6 +28,5 @@ export const RegisterApi = async (props: RegisterProps) => {
   }
 
   return response.json();
+
 }
-
-

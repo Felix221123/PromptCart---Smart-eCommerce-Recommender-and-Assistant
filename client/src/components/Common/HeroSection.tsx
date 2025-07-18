@@ -1,11 +1,9 @@
 import React from 'react'
-import { HeroSectionContainer, SearchBox, SiteHeader, TextSection } from '../../styles/components/HeroSection'
+import { HeroSectionContainer, SearchBox, SiteHeader } from '../../styles/components/HeroSection'
 import { CartNotification } from './CartNotif'
 import UserProfile from "../../assets/svg/user-profile.svg"
 import SearchIcon from "../../assets/svg/search.svg"
 import LikedCart from "../../assets/svg/liked.svg"
-import { Header } from '../Text/Header'
-import { Paragraph } from '../Text/Paragraph'
 import { useNavigate } from 'react-router-dom'
 
 export const HeroSection: React.FC = () => {
@@ -42,10 +40,6 @@ export const HeroSection: React.FC = () => {
             <CartNotification count={0} />
           </div>
         </SiteHeader>
-        <TextSection>
-          <Header text="Your Ideal Shopping is Here" className='hero-header' />
-          <Paragraph text="Discover your ideal product as fast as you can without breaking a sweat." />
-        </TextSection>
       </HeroSectionContainer>
     </>
   )

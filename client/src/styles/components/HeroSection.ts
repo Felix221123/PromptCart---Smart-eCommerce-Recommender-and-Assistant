@@ -15,6 +15,9 @@ import HeroBgImage from "../../assets/image/hero-bg.jpg"
 export const HeroSectionContainer = styled.div`
     ${SizeofOriginalContentsForDevicesMoreThan1440px};
     ${backgroundImage(HeroBgImage)};
+    width: 100%;
+    position: fixed;
+    top: 0;
 `
 
 
@@ -58,7 +61,7 @@ export const SiteHeader = styled.header`
 
 export const TextSection = styled.div`
     ${flexCenter("column", "center")};
-    padding: 6rem 0rem;
+    padding: 6rem 0 2.5rem 0rem;
     text-align: center;
 
     > .hero-header {
