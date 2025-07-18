@@ -2,7 +2,7 @@
 import React from 'react'
 import { describe, it } from 'vitest'
 import App from './App'
-import { render } from './utils/test-utils'
+import { render } from '@testing-library/react'
 
 describe('App Component', () => {
   it('it should display the app', () => {

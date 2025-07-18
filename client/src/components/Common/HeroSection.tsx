@@ -18,25 +18,23 @@ export const HeroSection: React.FC = () => {
   };
 
 
-
-
   return (
     <>
       {/* home hero bg */}
       <HeroSectionContainer>
         <SiteHeader>
-          <header className='font-bold cursor-pointer' onClick={() => handleNavigation('home')}>PromptCart</header>
+          <header className='font-bold cursor-pointer' onClick={() => handleNavigation('home')} data-testid="site-header">PromptCart</header>
 
           {/* search box */}
           <SearchBox>
             <img src={SearchIcon} alt="search tab" />
-            <input type="text" placeholder='Search for "gift my 2 year old daughter"' autoComplete='on' autoCorrect='on'/>
+            <input type="text" placeholder='Search for "gift my 2 year old daughter"' autoComplete='on' autoCorrect='on' data-testid="search-input"/>
           </SearchBox>
 
           {/* user profile */}
           <div className="userProfile">
-            <img className='cursor-pointer user-profile' src={UserProfile} alt=" user profile" />
-            <img className='cursor-pointer liked-items' src={LikedCart} alt="liked items section"/>
+            <img className='cursor-pointer user-profile' src={UserProfile} alt=" user profile" data-testid="user-profile"/>
+            <img className='cursor-pointer liked-items' src={LikedCart} alt="liked items section" data-testid="liked-items"/>
             <CartNotification count={0} />
           </div>
         </SiteHeader>

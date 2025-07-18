@@ -5,7 +5,7 @@ import { SubHeading } from '../../styles/components/Text'
 export const SubHeader: React.FC<TextProps> = ({ text, className}) => {
   return (
     <>
-      <SubHeading className={className}>
+      <SubHeading className={className} data-testid="sub-header">
         {text}
       </SubHeading>
     </>

@@ -7,7 +7,7 @@ import CartImg from "../../assets/svg/cart.svg"
 export const CartNotification: React.FC<CartNotificationProps> = ({ count }) => {
   return (
     <>
-      <CartNotificationStyle>
+      <CartNotificationStyle data-testid="cart-notification">
         <img src={CartImg} alt="cart" />
         {count > 0 && <CartCountContainer>{count}</CartCountContainer>}
       </CartNotificationStyle>

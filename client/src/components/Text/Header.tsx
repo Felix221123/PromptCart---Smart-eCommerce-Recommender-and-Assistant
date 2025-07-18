@@ -5,7 +5,7 @@ import { Heading } from '../../styles/components/Text'
 export const Header: React.FC<TextProps> = ({ text , className}) => {
   return (
     <>
-      <Heading className={className}>
+      <Heading className={className} data-testid="header">
         {text}
       </Heading>
     </>

@@ -7,7 +7,7 @@ export const AuthButton: React.FC<AuthButtonProps> = ({ text, onClick , classNam
 
   return (
     <>
-      <AuthButtonStyle onClick={onClick} className={className} type={type}>
+      <AuthButtonStyle onClick={onClick} className={className} type={type} data-testid="auth-button">
         {text}
       </AuthButtonStyle>
     </>

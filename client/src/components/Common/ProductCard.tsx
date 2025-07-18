@@ -18,11 +18,9 @@ export const ProductCard: React.FC = () => {
 
 
 
-
-
   return (
     <>
-      <ProductCardContainer imageUrl={Image}>
+      <ProductCardContainer imageUrl={Image} data-testid="product-card">
         <div className="product-image">
           <img src={isLiked ? LikedProduct : Liked} alt="Product" className='like-icon cursor-pointer' onClick={handleLikedProduct}/>
         </div>

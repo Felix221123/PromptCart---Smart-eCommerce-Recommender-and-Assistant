@@ -5,7 +5,7 @@ import { ParagraphStyle } from '../../styles/components/Text'
 export const Paragraph: React.FC<TextProps> = ({ text, className }) => {
   return (
     <>
-      <ParagraphStyle className={className}>
+      <ParagraphStyle className={className} data-testid="paragraph">
         {text}
       </ParagraphStyle>
     </>
