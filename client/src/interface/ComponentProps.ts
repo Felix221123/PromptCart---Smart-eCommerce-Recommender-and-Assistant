@@ -17,7 +17,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
 // text component props
 export interface TextProps {
-  text: string
+  text: string | undefined
   className?: string
 }
 

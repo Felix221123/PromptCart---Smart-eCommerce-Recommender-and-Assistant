@@ -13,16 +13,17 @@ import HeroBgImage from "../../assets/image/hero-bg.jpg"
 
 
 export const HeroSectionContainer = styled.div`
-    ${SizeofOriginalContentsForDevicesMoreThan1440px};
     ${backgroundImage(HeroBgImage)};
     width: 100%;
     position: fixed;
     top: 0;
+    z-index: 99999;
 `
 
 
 
 export const SiteHeader = styled.header`
+    ${SizeofOriginalContentsForDevicesMoreThan1440px};
     ${flexCenter("row", "space-between")};
     padding: 1rem 1.5rem;
 

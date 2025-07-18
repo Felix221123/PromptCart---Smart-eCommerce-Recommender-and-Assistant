@@ -5,7 +5,7 @@ import theme from "./styles/theme"
 import { ThemeProvider } from 'styled-components'
 import { AppRoute } from './routes/AppRoute'
 import { AuthProvider } from './context/users/AuthContext'
-
+import { ProductProvider } from './context/products/ProductContext'
 
 
 
@@ -14,9 +14,11 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <AppRoute />
-        </ThemeProvider>
+        <ProductProvider>
+          <ThemeProvider theme={theme}>
+            <AppRoute />
+          </ThemeProvider>
+        </ProductProvider>
       </AuthProvider>
     </>
   )
