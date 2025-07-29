@@ -3,6 +3,7 @@ import {
   backgroundImage,
   flexCenter,
   fontSize15px,
+  fontSize18px,
   fontSize24px,
   fontSize36px,
   fontSize60px,
@@ -84,15 +85,15 @@ export const SearchBox = styled.div`
     border-radius: 5rem;
     position: relative;
     width: 35%;
-    height: 3rem;
+    height: 4rem;
 
     @media (max-width: 767px) {
       display: none;
     }
 
     > img {
-      width: 2rem;
-      height: 2rem;
+      width: 2.5rem;
+      height: 2.5rem;
       object-fit: cover;
       position: absolute;
       left: 5%;
@@ -105,7 +106,7 @@ export const SearchBox = styled.div`
       border: none;
       outline: none;
       background-color: transparent;
-      ${fontSize15px};
+      ${fontSize18px};
       color: ${props => props.theme.colors.greyishBlack};
     }
 `

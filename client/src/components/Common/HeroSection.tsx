@@ -28,13 +28,13 @@ export const HeroSection: React.FC = () => {
           {/* search box */}
           <SearchBox>
             <img src={SearchIcon} alt="search tab" />
-            <input type="text" placeholder='Search for "gift my 2 year old daughter"' autoComplete='on' autoCorrect='on' data-testid="search-input"/>
+            <input type="text" placeholder='Search for "gift my 2 year old daughter"' autoComplete='on' autoCorrect='on' data-testid="search-input" />
           </SearchBox>
 
           {/* user profile */}
           <div className="userProfile">
-            <img className='cursor-pointer user-profile' src={UserProfile} alt=" user profile" data-testid="user-profile"/>
-            <img className='cursor-pointer liked-items' src={LikedCart} alt="liked items section" data-testid="liked-items"/>
+            <img className='cursor-pointer user-profile' src={UserProfile} alt=" user profile" data-testid="user-profile" />
+            <img className='cursor-pointer liked-items' src={LikedCart} alt="liked items section" data-testid="liked-items" />
             <CartNotification count={0} />
           </div>
         </SiteHeader>

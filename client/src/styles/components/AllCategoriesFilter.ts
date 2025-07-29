@@ -21,17 +21,17 @@ export const FilterContainer = styled.div`
 
 
   &::-webkit-scrollbar {
-      width: 0.25rem;
+      width: 0.25rem !important;
   }
 
   &::-webkit-scrollbar-track {
-      background: ${props => props.theme.colors.lightGreyish};
-      border-radius: 5rem;
+      background: ${props => props.theme.colors.lightGreyish} !important;
+      border-radius: 5rem !important;
   }
 
   &::-webkit-scrollbar-thumb {
-      background-color: ${props => props.theme.colors.greyishBlack};
-      border-radius: 5rem;
+      background-color: ${props => props.theme.colors.greyishBlack} !important;
+      border-radius: 5rem !important;
   }
 
   > .scrollable {
@@ -51,7 +51,7 @@ export const EachCategoryContainer = styled.div`
 
   > input[type="checkbox"] {
     appearance: none;
-    -webkit-appearance: none;
+    -webkit-appearance: none !important;
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 0.2rem;

@@ -17,7 +17,7 @@ export const ProductLayoutContainer = styled.div`
   }
 
   > .filters{
-    ${flexCenter("column", "flex-start")};
+    ${flexCenter("column", "center")};
     align-items: flex-start;
     gap: 2rem;
     position: sticky;

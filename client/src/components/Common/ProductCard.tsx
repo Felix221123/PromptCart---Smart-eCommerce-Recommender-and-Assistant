@@ -47,7 +47,7 @@ export const ProductCard: React.FC<Product> = ({
     <>
       <ProductCardContainer data-testid="product-card">
         <div className="product-image">
-          <img src={imageSrc} alt={title} className="product-photo" />
+          <img src={imageSrc} alt={title} className="product-photo" loading="lazy"/>
           <img src={isLiked ? LikedProduct : Liked} alt="Product" className='like-icon cursor-pointer' onClick={handleLikedProduct} />
         </div>
         <div className="product-details">

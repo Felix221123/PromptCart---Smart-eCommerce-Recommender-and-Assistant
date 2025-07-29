@@ -132,6 +132,7 @@ export const ButtonStyle = (pd: string, br: string, ftWeight: string) => css`
   font-weight: ${ftWeight};
   cursor: pointer;
   border: none;
+  width: 15rem;
 
   &:hover , &:active , &:focus {
     ${transitionHovers};

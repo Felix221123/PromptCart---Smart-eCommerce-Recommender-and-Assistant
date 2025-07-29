@@ -29,7 +29,7 @@ const app = express()
 
 // app.options('*', cors())
 app.use(cors({
-  origin: 'http://localhost:5173', // your React frontend origin
+  origin: ['http://localhost:5173','http://localhost:8080'], // your React frontend origin
   credentials: true,
 }))
 
@@ -45,9 +45,9 @@ app.use(helmet())
 
 // Limit requests from the same API
 const limiter = rateLimit({
-  max: 100,
+  max: 250, // allow up to 250 requests per hour
+  windowMs: 60 * 60 * 1000, // 1 hour
   message: 'Too many requests from this IP, Please try again in an hour!',
-  windowMs: 60 * 60 * 1000,
   validate: {
     validationsConfig: false,
     default: true

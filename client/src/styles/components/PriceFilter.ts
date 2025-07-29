@@ -5,7 +5,7 @@ export const PriceFilterContainer = styled.div`
   ${flex("column")};
   gap: 0.5rem;
   width: 17.82rem !important;
-  height: 20.5rem !important;
+  height: auto;
 `;
 
 export const SliderWrapper = styled.div`
