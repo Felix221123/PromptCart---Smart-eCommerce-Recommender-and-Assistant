@@ -9,7 +9,7 @@ import {
   fontSize60px,
   SizeofOriginalContentsForDevicesMoreThan1440px,
 } from "../mixin";
-import HeroBgImage from "../../assets/image/hero-bg.jpg"
+import HeroBgImage from "@/assets/image/hero-bg.jpg"
 
 
 

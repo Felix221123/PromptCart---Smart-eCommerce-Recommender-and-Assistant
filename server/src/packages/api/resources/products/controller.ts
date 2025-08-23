@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { AppDataSource } from '../../../../data-source'
 import { Product } from '~/packages/database/models/product'
 import * as httpStatus from 'http-status'
-
+import { filterSchema } from '../../middlewares/validation'
 
 // api starting point
 export const productHello = async (_req: Request, res: Response, _next: NextFunction) => {
@@ -43,66 +43,45 @@ export const allProducts = async (_req: Request, res: Response, _next: NextFunct
     }
 }
 
-// get products by category
-export const getProductsByCategory = async (req: Request, res: Response) => {
-    try {
-        const { category } = req.query
-
-        if (!category || typeof category !== 'string') {
-            return res.status(httpStatus.BAD_REQUEST).json({ error: 'Category is required and must be a string' })
-        }
-
-        const productRepo = AppDataSource.getRepository(Product)
-
-        const query = productRepo.createQueryBuilder('product')
-
-        // Category filter: multiple allowed
-        if (category) {
-            const categories = (category as string).split(',')
-            query.andWhere('product.category IN (:...categories)', { categories })
-        }
-
-        const products = await query.getMany()
-
-        res.status(httpStatus.OK).json({ products })
-
-    } catch (error) {
-        console.error('Error fetching products by category:', error)
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed to fetch products by category' })
-    }
-}
 
 
-
-
-
-
-// get products by category
+// get products by category, minimum and maximum price
 export const getFilteredProducts = async (req: Request, res: Response) => {
     try {
-        const { category, minPrice, maxPrice } = req.query
+        const { error, value } = filterSchema.validate(req.query);
 
-        const productRepo = AppDataSource.getRepository(Product)
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+        }
 
-        const query = productRepo.createQueryBuilder('product')
+        const { category, minPrice, maxPrice } = value;
 
-        // Category filter: multiple allowed
+        const productRepo = AppDataSource.getRepository(Product);
+        const query = productRepo.createQueryBuilder('product');
+
+        // Category filter
         if (category) {
-            const categories = (category as string).split(',')
-            query.andWhere('product.category IN (:...categories)', { categories })
+            const categories = category.split(',');
+            query.andWhere('product.category IN (:...categories)', { categories });
         }
 
-        // Price range filter
-        if (minPrice) {
-            query.andWhere('product.price >= :minPrice', { minPrice: parseFloat(minPrice as string) })
-        }
-        if (maxPrice) {
-            query.andWhere('product.price <= :maxPrice', { maxPrice: parseFloat(maxPrice as string) })
+        // Price filter
+        if (minPrice !== undefined) {
+            query.andWhere('product.price >= :minPrice', { minPrice });
         }
 
-        const products = await query.getMany()
+        if (maxPrice !== undefined) {
+            if (maxPrice >= 1000) {
+                // If maxPrice is 1000 or more, do not apply an upper limit
+                // Effectively, this includes all products above 1000 as well
+            } else {
+                query.andWhere('product.price <= :maxPrice', { maxPrice });
+            }
+        }
 
-        res.status(httpStatus.OK).json({ products })
+        const products = await query.getMany();
+        res.status(200).json({ products });
+
     } catch (error) {
         console.error('Error filtering products:', error)
         res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed to fetch filtered products' })

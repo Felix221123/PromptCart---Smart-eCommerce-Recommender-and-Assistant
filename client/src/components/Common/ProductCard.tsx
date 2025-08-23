@@ -1,11 +1,11 @@
 import React from 'react'
 import { ProductCardContainer } from '../../styles/components/ProductCard';
-import Liked from "../../assets/svg/liked.svg"
-import LikedProduct from "../../assets/svg/liked-product.svg"
-import Star from "../../assets/svg/star-review.svg"
+import Liked from "@/assets/svg/liked.svg"
+import LikedProduct from "@/assets/svg/liked-product.svg"
+import Star from "@/assets/svg/star-review.svg"
 import { Product } from '../../interface/ProductProps';
 import { CapitaliseFirstLetter } from '../../utils/CapitaliseFirstLetter';
-import ImagePlaceholder from "../../assets/image/image-placeholder.png"
+import ImagePlaceholder from "@/assets/image/image-placeholder.png"
 
 
 

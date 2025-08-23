@@ -18,6 +18,12 @@
     "jsx": "react-jsx",
     "types": ["vitest-dom/extend-expect","styled-components"],
 
+    /* reloading path */
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,

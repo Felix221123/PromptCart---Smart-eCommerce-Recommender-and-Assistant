@@ -6,7 +6,7 @@ import { AllProductResponse } from "../../../interface/ProductProps";
 export const GetProductsByCategoryAndPrice = async (categories: string[], minPrice: number, maxPrice: number): Promise<AllProductResponse | null> => {
   const Port = "http://localhost:5500";     //defining the backend port
   const categoryQuery = categories.join(',');
-  const url = `${Port}/products?category=${categoryQuery}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
+  const url = `${Port}/products/filter?category=${categoryQuery}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
 
   // making an options header for correct data posting
   const options = {

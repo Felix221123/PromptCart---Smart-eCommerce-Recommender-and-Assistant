@@ -1,7 +1,7 @@
 import React from 'react'
 import { CartNotificationProps } from '../../interface/ComponentProps'
 import { CartNotificationStyle, CartCountContainer } from '../../styles/components/CartNotif'
-import CartImg from "../../assets/svg/cart.svg"
+import CartImg from "@/assets/svg/cart.svg"
 
 
 export const CartNotification: React.FC<CartNotificationProps> = ({ count }) => {

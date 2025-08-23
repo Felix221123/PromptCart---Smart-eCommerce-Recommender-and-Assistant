@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { flex, flexCenter, fontSize18px, transitionHovers } from "../mixin";
-import CheckIcon from "../../assets/svg/check.svg"
+import CheckIcon from "@/assets/svg/check.svg"
 
 
 
@@ -13,7 +13,7 @@ export const AllCategoriesFilterContainer = styled.div`
 export const FilterContainer = styled.div`
   ${flex("column")};
   width: 17.82rem !important;
-  height: 20.5rem !important;
+  height: 18rem !important;
   padding:1rem 0rem 1rem 0rem !important;
   overflow-y: auto;
   white-space: nowrap;

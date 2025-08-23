@@ -1,14 +1,7 @@
-// import joi from '@hapi/joi'
-// import { createValidator } from 'express-joi-validation'
+import Joi from '@hapi/joi';
 
-// const validator = createValidator({ passError: true })
-
-// export const enum ContainerTypes {
-//   Body = 'body',
-//   Fields = 'fields',
-//   Headers = 'headers',
-//   Params = 'params',
-//   Query = 'query',
-// }
-
-// export const isValid = (type: ContainerTypes, schema: joi.Schema) => validator[type](schema)
+export const filterSchema = Joi.object({
+  category: Joi.string().optional(),     // optional string
+  minPrice: Joi.number().optional(),     // optional number
+  maxPrice: Joi.number().optional()      // optional number
+});

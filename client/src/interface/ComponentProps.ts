@@ -33,3 +33,9 @@ export interface ButtonProps {
 export interface CartNotificationProps {
   count: number
 }
+
+export interface PriceFilterProps {
+  minPrice: number
+  maxPrice: number
+  onPriceChange: (minPrice: number, maxPrice: number) => void
+}

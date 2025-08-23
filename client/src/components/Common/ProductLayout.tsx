@@ -1,20 +1,23 @@
 import React from 'react'
-import { ProductLayoutContainer } from '../../styles/components/ProductLayout'
+import { ProductLayoutContainer } from '@/styles/components/ProductLayout'
 import { AllCategoriesFilter } from './AllCateogoriesFilter'
 import { PriceFilter } from './PriceFilter'
-import { useProductContext } from '../../context/products/useProductContext'
+import { useProductContext } from '@/context/products/useProductContext'
 import { ProductCard } from './ProductCard'
 import { AuthButton } from '../Button/AuthButton'
-import { GetProductByCategories } from '../../packages/api/products/GetProductByCategories'
-import { AllProductResponse } from '../../interface/ProductProps'
+import { AllProductResponse } from '@/interface/ProductProps'
 import { Loading } from './Loading'
-
+import { GetProductsByCategoryAndPrice }  from "@/packages/api/products/GetProductsByCategoryAndPrice"
 
 
 export const ProductLayout: React.FC = () => {
   const { products, fetchProducts } = useProductContext();
   const [selectedCategories, setSelectedCategories] = React.useState<string[]>([]);
   const [filteredProducts, setFilteredProducts] = React.useState<AllProductResponse | null>(null);
+  const [priceRange, setPriceRange] = React.useState<{ min: number; max: number }>({
+    min: 0,
+    max: 1000,
+  });
   const [loading, setLoading] = React.useState<boolean>(false);
 
   // fetch products on component mount
@@ -22,34 +25,36 @@ export const ProductLayout: React.FC = () => {
     const loadProducts = async () => {
       setLoading(true);
       await fetchProducts();
-
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+      setLoading(false);
     };
 
     loadProducts();
   }, [fetchProducts]);
 
+  // handle price range change
+  const handlePriceChange = (min: number, max: number) => {
+    setPriceRange({ min, max });
+  };
 
   console.log(selectedCategories, ' here is a list of the selected categories');
 
-
-  const handleProductCategorySelection = async (category: string[]) => {
+  const handleProductCategorySelection = async (category: string[],minPrice: number, maxPrice: number) => {
     if (category.length === 0) {
       setFilteredProducts(null);
       fetchProducts();
       return;
     }
 
+    // clears previous products
+    setFilteredProducts(null);
     setLoading(true);
-    try {
-      const data = await GetProductByCategories(category);
 
-      setTimeout(() => {
-        setFilteredProducts(data ?? null);
-        setLoading(false); // stop loading after delay
-      }, 3000);
+    try {
+      // fetch products by categories
+      const data = await GetProductsByCategoryAndPrice(category, minPrice, maxPrice);
+
+      // update filtered products
+      setFilteredProducts(data ?? null);
 
     } catch (error) {
       console.error("Error fetching products by categories:", error);
@@ -63,7 +68,6 @@ export const ProductLayout: React.FC = () => {
   const productsToDisplay = filteredProducts?.products ?? products?.products ?? [];
 
 
-
   return (
     <>
       <ProductLayoutContainer>
@@ -72,10 +76,15 @@ export const ProductLayout: React.FC = () => {
             selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}
           />
-          <PriceFilter />
+          <PriceFilter
+            minPrice={priceRange.min}
+            maxPrice={priceRange.max}
+            onPriceChange={handlePriceChange}
+          />
           <AuthButton
             text="Apply Filter"
-            onClick={() => handleProductCategorySelection(selectedCategories)}
+            onClick={() => handleProductCategorySelection(selectedCategories, priceRange.min, priceRange.max)}
+            className='filter-btn'
           />
         </div>
         <div className="mainProductDisplay">
@@ -86,7 +95,7 @@ export const ProductLayout: React.FC = () => {
               <ProductCard key={index} {...product} />
             ))
           ) : (
-            <p className='text-center font-bold text-2xl'>No products found.</p>
+            <p className='no-product text-center font-bold text-2xl'>No products found.</p>
           )}
           <>
           </>
