@@ -1,5 +1,5 @@
 // tslint:disable:variable-name
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, Timestamp, CreateDateColumn, JoinColumn, ManyToOne } from 'typeorm'
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm'
 import config from '../../../config/index'
 
 

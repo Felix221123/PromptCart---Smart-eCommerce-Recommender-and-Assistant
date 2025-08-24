@@ -79,7 +79,6 @@ SERVER_PORT=""
 3. Execute `$ npm run setup:test`
 4. Run `$ npm test`
 
-![](https://leo.d.pr/zRCRhO+)
 
 ### License
 
