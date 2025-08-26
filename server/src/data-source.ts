@@ -8,6 +8,7 @@ import { User } from "./packages/database/models/user"
 import { WishList } from "./packages/database/models/wishList"
 import { OrderItem } from "./packages/database/models/orderItem"
 import { Payment } from "./packages/database/models/payment"
+import { ProductEmbedding } from "./packages/database/models/productEmbedding"
 
 
 export const AppDataSource = new DataSource({
@@ -24,8 +25,8 @@ export const AppDataSource = new DataSource({
   synchronize: false,
 
   // entity file path and migration file path
-  entities: [Order, Product, User, WishList, OrderItem, Payment],
-  migrations: ['src/packages/database/migrations/*.ts'],
+  entities: [Order, Product, User, WishList, OrderItem, Payment, ProductEmbedding],
+  migrations: ['src/packages/database/migrations/**/*.ts'],
 
   // ssl
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,

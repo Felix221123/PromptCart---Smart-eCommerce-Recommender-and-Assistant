@@ -85,3 +85,17 @@ SERVER_PORT=""
 This project is an open-sourced software licensed under the [MIT license](https://github.com/busayo/meanmap/blob/master/LICENSE).
 
 
+#### CMD TO RUN
+   In order to run any database changes, here is the cmd
+   here is cmd
+   ```bash
+   npm run db:cli -- migration:generate ./src/packages/database/migrations/<new-folder-name to keep track of changes>/<name of db changes>
+
+   ```
+   Make sure to include any new class you created to the entities in your data source
+
+   ```in order to list all the files & folders in your migration path, use this cmd
+   ```bash
+   npm run db:cli -- migration:show 
+
+

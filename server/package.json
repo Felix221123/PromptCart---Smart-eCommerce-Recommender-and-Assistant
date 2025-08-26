@@ -1,7 +1,10 @@
 {
-  "name": "Smart AI eCommerce Recommender & Assistant",
+  "name": "smart_ai_ecommerce_recommender_assistant",
   "version": "1.0.0",
   "description": "Smart AI eCommerce Recommender & Assistant",
+  "author": {
+    "name": "Felix Baah"
+  },
   "scripts": {
     "server": "nodemon",
     "build": "tsc",
