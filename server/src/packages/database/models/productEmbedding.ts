@@ -13,10 +13,10 @@ export class ProductEmbedding extends BaseEntity {
     product: Product
 
     // text embedding (OpenAI text-embedding-3-large)
-    @Column("float8", { array: true, nullable: true })
-    text_embedding: number[]
+    @Column({ nullable: true })
+    text_embedding: string
 
-    // image embedding (OpenAI or CLIP-like model)
-    @Column("float8", { array: true, nullable: true })
-    image_embedding: number[]
+    // image embedding (clip model from transformers library - Hugging face)
+    @Column({ nullable: true })
+    image_embedding: string
 }

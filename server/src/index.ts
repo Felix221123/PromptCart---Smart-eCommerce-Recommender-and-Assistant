@@ -8,13 +8,13 @@ const PORT = config.SERVER_PORT || '5500'
 
 
 async function onStart(): Promise<any> {
-  try {
-    await getConnection()
-  } catch (err) {
-    // tslint:disable-next-line:no-console
-    console.log(err)
-    throw err
-  }
+    try {
+        await getConnection()
+    } catch (err) {
+        // tslint:disable-next-line:no-console
+        console.log(err)
+        throw err
+    }
 }
 
 const currentServer = http.createServer(server)

@@ -12,23 +12,23 @@ import { ProductEmbedding } from "./packages/database/models/productEmbedding"
 
 
 export const AppDataSource = new DataSource({
-  // database connection
-  type: 'postgres',
-  database: config.DB.NAME,
-  host: config.DB.HOST,
-  password: config.DB.PASSWORD,
-  port: config.DB.PORT,
-  username: config.DB.USER,
+    // database connection
+    type: 'postgres',
+    database: config.DB.NAME,
+    host: config.DB.HOST,
+    password: config.DB.PASSWORD,
+    port: config.DB.PORT,
+    username: config.DB.USER,
 
-  // database settings
-  logging: false,
-  synchronize: false,
+    // database settings
+    logging: false,
+    synchronize: false,
 
-  // entity file path and migration file path
-  entities: [Order, Product, User, WishList, OrderItem, Payment, ProductEmbedding],
-  migrations: ['src/packages/database/migrations/**/*.ts'],
+    // entity file path and migration file path
+    entities: [Order, Product, User, WishList, OrderItem, Payment, ProductEmbedding],
+    migrations: ['src/packages/database/migrations/**/*.ts'],
 
-  // ssl
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+    // ssl
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 })
 
