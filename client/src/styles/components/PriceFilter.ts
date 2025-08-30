@@ -80,7 +80,7 @@ export const PriceInputBox = styled.div`
 
   input {
     border: none;
-    width: 3rem;
+    width: 3.5rem;
     font-size: 1rem;
     text-align: right;
     color: #2f3542;

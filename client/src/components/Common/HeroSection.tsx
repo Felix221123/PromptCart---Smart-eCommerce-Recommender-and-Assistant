@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { HeroSectionContainer, SearchBox, SiteHeader } from '../../styles/components/HeroSection'
 import { CartNotification } from './CartNotif'
 import UserProfile from "@/assets/svg/user-profile.svg"
@@ -6,8 +6,14 @@ import SearchIcon from "@/assets/svg/search.svg"
 import LikedCart from "@/assets/svg/liked.svg"
 import { useNavigate } from 'react-router-dom'
 
-export const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  onSearch: (query: string) => void;
+}
+
+
+export const HeroSection: React.FC<HeroSectionProps> = ({onSearch}) => {
   const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState<string>('');
 
   // handle navigation to login page
   const handleNavigation = (route: string | undefined) => {
@@ -15,6 +21,12 @@ export const HeroSection: React.FC = () => {
       route = 'login';
     }
     navigate(`/${route}`);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setInputValue(query);
+    onSearch(query);
   };
 
 
@@ -35,11 +47,13 @@ export const HeroSection: React.FC = () => {
           <SearchBox>
             <img src={SearchIcon} alt="search tab" />
             <input
-              type="text"
+              type="search"
               placeholder='what are you looking for'
               autoComplete='on'
               autoCorrect='on'
               data-testid="search-input"
+              value={inputValue}
+              onChange={handleInputChange}
             />
           </SearchBox>
 

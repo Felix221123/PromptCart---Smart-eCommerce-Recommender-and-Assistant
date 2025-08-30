@@ -25,9 +25,16 @@ export interface Product {
 
 export interface AllProductResponse {
   products: Product[];
+  detail?: string;
 }
 
 
 export interface AllProductCategoriesResponse {
   categories: string[];
+}
+
+
+export interface ApiError {
+  status: number;
+  detail?: string;
 }

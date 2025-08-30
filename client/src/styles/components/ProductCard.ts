@@ -21,7 +21,7 @@ export const ProductCardContainer = styled.div`
       z-index: 99;
 
       &:hover {
-        scale: 1.1;
+        scale: 1.05;
         opacity: 0.8;
         ${transitionHovers};
       }

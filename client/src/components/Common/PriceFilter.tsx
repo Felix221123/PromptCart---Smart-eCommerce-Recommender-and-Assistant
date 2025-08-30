@@ -65,7 +65,11 @@ export const PriceFilter: React.FC<PriceFilterProps> =
             <div>
               <label>Min price</label>
               <PriceInputBox>
-                <input type="number" value={minVal} onChange={handleMinChange} />
+                <input
+                  type="number"
+                  value={minVal}
+                  onChange={handleMinChange}
+                />
                 <Pound>£</Pound>
               </PriceInputBox>
             </div>
@@ -73,7 +77,11 @@ export const PriceFilter: React.FC<PriceFilterProps> =
             <div>
               <label>Max price</label>
               <PriceInputBox>
-                <input type="number" value={maxVal} onChange={handleMaxChange} />
+                <input
+                  type="number"
+                  value={maxVal}
+                  onChange={handleMaxChange}
+                />
                 <Pound>£</Pound>
               </PriceInputBox>
             </div>
