@@ -9,7 +9,7 @@ import { screen } from '@testing-library/react'
 
 describe('Hero Section Component', () => {
   it('it should display the hero section', () => {
-    render(<HeroSection />);
+    render(<HeroSection onSearch={() => { }} />);
 
     const siteHeader = screen.getByTestId("site-header");
 
