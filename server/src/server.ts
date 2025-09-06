@@ -12,10 +12,10 @@ import xss from 'xss-clean'
 import hpp from 'hpp'
 
 
-import config from '~/config'
+import config from './config/index'
 
-import { handleErrors } from '~/packages/api/middlewares/error'
-import router from '~/packages/api/router'
+import { handleErrors } from './packages/api/middlewares/error'
+import router from './packages/api/router'
 
 const app = express()
 

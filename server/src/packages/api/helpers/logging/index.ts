@@ -1,6 +1,6 @@
 import { TransformableInfo } from 'logform'
 import { createLogger, format, LoggerOptions, transports } from 'winston'
-import config from '~/config'
+import config from '../../../../config/index'
 
 const formatParams = (info: TransformableInfo) => {
   const { timestamp, level, message, ...args } = info

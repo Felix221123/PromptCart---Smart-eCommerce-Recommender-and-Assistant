@@ -1,6 +1,6 @@
 import fs from 'fs'
 import http from 'http'
-import config from '~/config'
+import config from './config/index'
 import { getConnection } from './packages/database'
 import server from './server'
 

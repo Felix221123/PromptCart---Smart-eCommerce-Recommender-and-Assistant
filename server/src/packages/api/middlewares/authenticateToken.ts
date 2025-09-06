@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 import config from '../../../config/index'
-import { User } from '~/packages/database/models/user'
-import { AppDataSource } from '~/data-source'
+import { User } from '../../database/models/user'
+import { AppDataSource } from '../../../data-source'
 
 export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization

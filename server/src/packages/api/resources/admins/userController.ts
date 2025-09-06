@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import * as httpStatus from 'http-status'
 import { AppDataSource } from '../../../../data-source'
-import { User } from '~/packages/database/models/user'
+import { User } from '../../../database/models/user'
 
 
 // all users

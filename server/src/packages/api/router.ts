@@ -1,7 +1,7 @@
 import * as express from 'express'
-import userRouter from '~/packages/api/resources/users/index'
-import adminRouter from '~/packages/api/resources/admins/index'
-import productRouter from '~/packages/api/resources/products/index'
+import userRouter from '../api/resources/users/index'
+import adminRouter from '../api/resources/admins/index'
+import productRouter from '../api/resources/products/index'
 
 
 const router = express.Router()

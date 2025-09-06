@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import { DataSource } from 'typeorm'
-import { AppDataSource } from '~/data-source'
+import { AppDataSource } from '../../data-source'
 
 export async function getConnection(): Promise<DataSource> {
     if (!AppDataSource.isInitialized) {

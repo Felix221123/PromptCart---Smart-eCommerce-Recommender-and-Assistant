@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import * as httpStatus from 'http-status'
 import { AppDataSource } from '../../../../data-source'
 import bcrypt from 'bcrypt'
-import { User } from '~/packages/database/models/user'
+import { User } from '../../../database/models/user'
 import jwt, { SignOptions} from 'jsonwebtoken'
 import config from '../../../../config/index'
 
@@ -16,7 +16,7 @@ export const register = async (_req: Request, _res: Response, _next: NextFunctio
     const usersRepository = AppDataSource.getRepository(User)
 
     // check if the user already exists
-    const existingUser = await usersRepository.findOne({ where: { email } })  
+    const existingUser = await usersRepository.findOne({ where: { email } })
 
     // if user already exist then log an console.error;
     if (existingUser){
@@ -45,7 +45,7 @@ export const register = async (_req: Request, _res: Response, _next: NextFunctio
     } else {
       return _res.status(400).json({ message: "Failed to register user" })
     }
-    
+
   } catch (error) {
     return _res.status(500).json({ message: "Internal server error", error })
   }
@@ -85,8 +85,8 @@ export const login = async (_req: Request, _res: Response, _next: NextFunction) 
 
 
     const token = jwt.sign(
-      payload, 
-      config.AUTH.TOKEN_SECRET, 
+      payload,
+      config.AUTH.TOKEN_SECRET,
       {
         expiresIn: config.AUTH.TOKEN_EXPIRATION_TIME as SignOptions['expiresIn'],
       }

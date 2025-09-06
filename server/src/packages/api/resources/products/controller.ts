@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { AppDataSource } from '../../../../data-source'
-import { Product } from '~/packages/database/models/product'
+import { Product } from '../../../database/models/product'
 import * as httpStatus from 'http-status'
 import { filterSchema } from '../../middlewares/validation'
 

@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from 'express'
 import * as httpStatus from 'http-status'
-import config from '~/config'
+import config from '../../../config/index'
 import { APIException } from '../helpers/exceptions/APIException'
 import { Forbidden } from '../helpers/exceptions/forbidden'
 import { InvalidParameter } from '../helpers/exceptions/invalidParameter'
 import { NotFound } from '../helpers/exceptions/notFound'
 import { Unauthorized } from '../helpers/exceptions/unauthorized'
 
-import logger from '~/packages/api/helpers/logging'
+import logger from '../../api/helpers/logging/index'
 
 interface ErrorResponse {
   code: number
