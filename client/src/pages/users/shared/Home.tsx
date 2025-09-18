@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { HeroSection } from '../../../components/Common/HeroSection'
 import { ProductLayout } from '../../../components/Common/ProductLayout'
+import { Bot } from '@/components/chat/Bot';
 
 export const Home: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -14,6 +15,7 @@ export const Home: React.FC = () => {
       <ProductLayout
         searchQuery={searchQuery}
       />
+      <Bot />
     </>
   )
 }

@@ -29,8 +29,11 @@ const app = express()
 
 // app.options('*', cors())
 app.use(cors({
-  origin: ['http://localhost:5173','http://localhost:8080'], // your React frontend origin
-  credentials: true,
+    origin: [
+        'http://localhost:5173',
+        'http://localhost:8080'
+    ], // your React frontend origin
+    credentials: true,
 }))
 
 // Set Body parser, reading data from body into req.body
@@ -45,13 +48,13 @@ app.use(helmet())
 
 // Limit requests from the same API
 const limiter = rateLimit({
-  max: 250, // allow up to 250 requests per hour
-  windowMs: 60 * 60 * 1000, // 1 hour
-  message: 'Too many requests from this IP, Please try again in an hour!',
-  validate: {
-    validationsConfig: false,
-    default: true
-  }
+    max: 250, // allow up to 250 requests per hour
+    windowMs: 60 * 60 * 1000, // 1 hour
+    message: 'Too many requests from this IP, Please try again in an hour!',
+    validate: {
+        validationsConfig: false,
+        default: true
+    }
 })
 
 app.use('/', limiter)
@@ -68,17 +71,17 @@ app.use(compression())
 app.disable('x-powered-by')
 
 app.use(
-  morgan(config.LOGGING.TYPE, {
-    skip: (_req: Request, res: Response) => res.statusCode < httpStatus.BAD_REQUEST,
-    stream: process.stderr,
-  }),
+    morgan(config.LOGGING.TYPE, {
+        skip: (_req: Request, res: Response) => res.statusCode < httpStatus.BAD_REQUEST,
+        stream: process.stderr,
+    }),
 )
 
 app.use(
-  morgan(config.LOGGING.TYPE, {
-    skip: (_req: Request, res: Response) => res.statusCode >= httpStatus.BAD_GATEWAY,
-    stream: process.stdout,
-  }),
+    morgan(config.LOGGING.TYPE, {
+        skip: (_req: Request, res: Response) => res.statusCode >= httpStatus.BAD_GATEWAY,
+        stream: process.stdout,
+    }),
 )
 
 app.use(bodyParser.json())
