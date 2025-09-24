@@ -2,17 +2,24 @@ import React from 'react'
 import ChatBotImg from "@/assets/svg/chat-icon.svg"
 import { motion } from "framer-motion"
 import { Paragraph } from '../Text/Paragraph'
-import { ChatContainer } from '@/styles/components/chat'
+import { BotContainer } from '@/styles/components/chat'
 
 
-export const Bot: React.FC = () => {
+interface BotProps {
+  setOpenChat: () => void;
+}
+
+
+export const Bot: React.FC<BotProps> = (
+  { setOpenChat }
+) => {
 
   return (
     <>
-      <ChatContainer>
+      <BotContainer onClick={() => setOpenChat()}>
         <div className="messageBox">
           <Paragraph
-            text="Not find what you are looking for?"
+            text="Not finding what you are looking for?"
             className="message"
           />
           <motion.img
@@ -28,7 +35,7 @@ export const Bot: React.FC = () => {
             }}
           />
         </div>
-      </ChatContainer>
+      </BotContainer>
     </>
   )
 }

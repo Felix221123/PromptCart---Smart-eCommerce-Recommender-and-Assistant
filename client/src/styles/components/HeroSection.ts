@@ -29,7 +29,7 @@ export const SiteHeader = styled.header`
     padding: 1rem 1.5rem;
 
     @media (min-width:768px) {
-        padding: 1.75rem 2rem;
+        padding: 1rem 2rem;
     }
 
     > header {

@@ -85,7 +85,7 @@ export const OverLayEffect = css`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
   cursor: pointer;
-   transition: all 0.5s;
+  transition: all 0.5s;
 `
 
 export const hiddenElementLessThan767px = css`
