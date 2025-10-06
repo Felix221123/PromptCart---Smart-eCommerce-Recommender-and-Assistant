@@ -82,19 +82,41 @@ export const ImageContainer = styled.div`
   }
 `
 
+
+export const ChatFooter = styled.div`
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 200;
+  pointer-events: none; 
+  
+  .attachments-floater {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(3.25rem + 8px); 
+    pointer-events: auto;
+    width: 65%;
+    margin: 0 auto;
+  }
+`;
+
+
+
 export const ChatInput = styled.div`
   ${flexCenter("row", "space-between")};
   gap: 0.5rem;
   padding: 0.75rem 1rem;
   border: 1px solid black;
   border-radius: 5rem;
-  position: fixed;
+  position: relative;
+  pointer-events: auto;
   margin: 0 auto;
   bottom: 1rem;
-  width: 55%;
+  width: 75%;
   height: 4.5rem;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
 
   > div.file {
@@ -160,16 +182,27 @@ export const ConversationContainer = styled.div`
     ${flexCenter("column", "flex-start")};
 
     > .userMessageBox{
-      ${flexCenter("row", "flex-end")};
+      ${flexCenter("column", "flex-end")};
       width: fit-content;
       align-self: flex-end;
       align-items: flex-end;
-      gap: 0.5rem;
-      background: ${props => props.theme.colors.lightGreyish};
+      gap: 0.25rem;
       max-width: 70%;
+      background: transparent;
       height: auto;
       padding: 1rem 1rem;
       border-radius: 1rem 0rem 1rem 1rem;
+
+      > .message {
+        ${flexCenter("row", "flex-end")};
+        background: ${props => props.theme.colors.lightGreyish};
+        width: fit-content;
+        align-self: flex-end;
+        align-items: flex-end;
+        height: auto;
+        padding: 1rem 1rem;
+        border-radius: 1rem 0rem 1rem 1rem;
+      }
     }
 
     > .aiContainer{
